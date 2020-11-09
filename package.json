@@ -1,0 +1,22 @@
+{
+  "name": "devotional-mailer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.3",
+    "crypto": "^1.0.1",
+    "dotenv": "^8.2.0",
+    "got": "^11.8.0",
+    "js-yaml": "^3.14.0",
+    "lowdb": "^1.0.0",
+    "nodemailer": "^6.4.15",
+    "serializr": "^2.0.3"
+  }
+}
