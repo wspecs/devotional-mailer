@@ -9,6 +9,8 @@ const crypto = require('crypto');
 const nodemailer = require("nodemailer");
 require('dotenv').config();
 
+const WAIT_INTERVAL_BETWEEN_EMAIL_MS = 1000;
+
 const transporter = nodemailer.createTransport({
 	host: "box.wspecs.com",
 	port: 587,
@@ -52,6 +54,7 @@ async function sendNotifications() {
 	}
 	for (const email of db.get('subscribers').value()) {
 		await sendNotification(email, text, html);
+		await new Promise(resolve => setTimeout(resolve, WAIT_INTERVAL_BETWEEN_EMAIL_MS));
 	}
 }
 		
