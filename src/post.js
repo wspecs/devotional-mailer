@@ -7,8 +7,12 @@ function getKeyForToday() {
 	return new Date().toISOString().slice(0,10);
 }
 
+function getLinkForToday() {
+	return getConfig().post[getKeyForToday()];
+}
+
 async function getPostForToday() {
-	const link = getConfig().post[getKeyForToday()];
+	const link = getLinkForToday();
 	if (link == null) {
 		return;
 	}
@@ -18,6 +22,10 @@ async function getPostForToday() {
 
 async function getEmailForToday() {
 	const post = await getPostForToday();
+	if (!post) {
+		console.log('No post found');
+		return {};
+	}
 	const $ = cherio.load(post);
 	const meteredContent = cherio.load($('article.meteredContent').html());
 	const elems = meteredContent('h1,h2,blockquote,p');
@@ -36,5 +44,6 @@ async function getEmailForToday() {
 
 module.exports = {
 	getEmailForToday,
-	getKeyForToday
+	getKeyForToday,
+	getLinkForToday
 };
